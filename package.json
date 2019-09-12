@@ -1,0 +1,28 @@
+{
+  "name": "cc-react-antd-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "umi dev",
+    "build": "umi build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChengYiFan/CC-react-antd-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChengYiFan/CC-react-antd-web/issues"
+  },
+  "homepage": "https://github.com/ChengYiFan/CC-react-antd-web#readme",
+  "devDependencies": {
+    "umi": "^2.9.3",
+    "umi-plugin-react": "^1.9.19"
+  },
+  "dependencies": {
+    "antd": "^3.23.2"
+  }
+}
