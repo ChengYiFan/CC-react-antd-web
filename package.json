@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ChengYiFan/CC-react-antd-web#readme",
   "devDependencies": {
+    "postcss-pxtorem": "^4.0.1",
     "umi": "^2.9.3",
     "umi-plugin-react": "^1.9.19"
   },

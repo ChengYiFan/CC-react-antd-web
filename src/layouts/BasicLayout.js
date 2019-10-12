@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import Link from 'umi/link';
+import styles from './BasicLayout.less';
+
 
 // Header, Footer, Sider, Content组件在Layout组件模块下
 const { Header, Footer, Sider, Content } = Layout;
@@ -8,18 +11,35 @@ const { Header, Footer, Sider, Content } = Layout;
 const SubMenu = Menu.SubMenu;
 
 class BasicLayout extends Component {
+  state = {
+    collapsed: false,
+  };
+
+  toggle = () => {
+    const { collapsed } = this.state;
+    this.setState({ collapsed: !collapsed });
+  };
+
   render() {
+    const { collapsed } = this.state;
+
     return (
       <Layout>
         <Sider
           width={256}
-          style={{ minHeight: '100vh', color: 'white' }}
+          collapsible
+          collapsed={collapsed}
+          onCollapse={this.onCollapse}
+          trigger={null}
+          className={styles.sider}
         >
-          <div style={{ height: '32px', background: 'rgba(255,255,255,.2)', margin: '16px'}}/>
+          <div className={styles.logo}/>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
-              <Icon type="pie-chart" />
-              <span>Helloworld</span>
+              <Link to="/editor">
+                <Icon type="pie-chart" />
+                <span>editor</span>
+              </Link>
             </Menu.Item>
             <SubMenu
               key="sub1"
@@ -33,12 +53,16 @@ class BasicLayout extends Component {
         </Sider>
         <Layout>
           <Header
-            style={{ background: '#fff', textAlign: 'center', padding: 0 }}
+            style={{ background: '#fff', padding: 0 }}
           >
-            Header
+            <div className={styles.header}>
+              <span className={styles.trigger} onClick={this.toggle}>
+                <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
+              </span>
+            </div>
           </Header>
           <Content
-            style={{ margin: '24px 16px 0' }}
+            className={styles.content}
           >
             {this.props.children}
           </Content>

@@ -1,0 +1,42 @@
+@import '~antd/lib/style/themes/default.less';
+
+@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+
+.content {
+  margin: 24px;
+  padding-top: @layout-header-height;
+}
+
+.header {
+  height: @layout-header-height;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  position: relative;
+}
+
+.trigger {
+  font-size: 20px;
+  height: @layout-header-height;
+  cursor: pointer;
+  transition: all 0.3s, padding 0s;
+  padding: ~'calc((@{layout-header-height} - 20px) / 2)' 24px;
+  &:hover {
+    background: @pro-header-hover-bg;
+  }
+}
+
+.logo {
+  height: 64px;
+  line-height: 64px;
+  padding-left: 24px;
+  transition: all 0.3s;
+  background: #002140;
+  overflow: hidden;
+}
+
+.sider {
+  min-height: 100vh;
+  color: white;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
