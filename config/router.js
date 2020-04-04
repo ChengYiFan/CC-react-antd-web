@@ -9,8 +9,14 @@ export default [
       },
       {
         path: '/editor',
-        component: 'Editor',
-      }
+        name: '富文本',
+        component: './Editor',
+      },
+      {
+        path: '/lottie',
+        name: 'lottie动画',
+        component: './Lotties',
+      },
     ]
   }
 ]
