@@ -28,6 +28,13 @@ export default {
   // Theme for antd
   // https://ant.design/docs/react/customize-theme-cn
   theme: { 'primary-color': primaryColor },
+  /**
+   * webpack 相关配置
+   */
+  define: {
+    PRIMARY_COLOR: primaryColor,
+    APP_TYPE: process.env.APP_TYPE || ''
+  },
   // px2rem remUnit: 设计图宽度/10
   // extraPostCSSPlugins:[px2rem({remUnit: 37.5})],
   // 定义额外的 PostCSS 插件，格式为数组

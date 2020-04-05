@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Icon } from 'antd';
+import { connect } from 'dva';
 import Link from 'umi/link';
+import SiderMenu from '@/components/SiderMenu';
 import styles from './BasicLayout.less';
 
 
 // Header, Footer, Sider, Content组件在Layout组件模块下
 const { Header, Footer, Sider, Content } = Layout;
 
-// 引入子菜单组件
-const SubMenu = Menu.SubMenu;
-
 class BasicLayout extends Component {
   state = {
     collapsed: false,
   };
+
+  componentDidMount() {
+    const {
+      dispatch,
+      route: { routes, authority },
+    } = this.props;
+    dispatch({
+      type: 'menu/getMenuData',
+      payload: { routes, authority },
+    });
+  }
 
   toggle = () => {
     const { collapsed } = this.state;
@@ -22,35 +32,16 @@ class BasicLayout extends Component {
 
   render() {
     const { collapsed } = this.state;
-
+    const { navTheme, menuData } = this.props;
     return (
       <Layout>
-        <Sider
-          width={256}
-          collapsible
+        <SiderMenu
+          onCollapse={this.toggle}
           collapsed={collapsed}
-          onCollapse={this.onCollapse}
-          trigger={null}
-          className={styles.sider}
-        >
-          <div className={styles.logo}/>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Link to="/editor">
-                <Icon type="pie-chart" />
-                <span>editor</span>
-              </Link>
-            </Menu.Item>
-            <SubMenu
-              key="sub1"
-              title={<span><Icon type="dashboard" /><span>Dashboard</span></span>}
-            >
-               <Menu.Item key="2">分析页</Menu.Item>
-               <Menu.Item key="3">监控页</Menu.Item>
-               <Menu.Item key="4">工作台</Menu.Item>
-            </SubMenu>
-          </Menu>
-        </Sider>
+          menuData={menuData}
+          theme={navTheme}
+          {...this.props}
+        />
         <Layout>
           <Header
             style={{ background: '#fff', padding: 0 }}
@@ -77,4 +68,12 @@ class BasicLayout extends Component {
   }
 }
 
-export default BasicLayout;
+const BasicLayoutWarp = connect(({ menu, setting }) => ({
+  menuData: menu.menuData,
+  breadcrumbNameMap: menu.breadcrumbNameMap,
+  ...setting,
+}))(props => (
+  <BasicLayout {...props} />
+));
+
+export default BasicLayoutWarp;
