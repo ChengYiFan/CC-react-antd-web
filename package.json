@@ -21,7 +21,7 @@
   "devDependencies": {
     "postcss-pxtorem": "^4.0.1",
     "umi": "^2.11.3",
-    "umi-plugin-react": "^1.9.19"
+    "umi-plugin-react": "^1.15.8"
   },
   "dependencies": {
     "ant-design-pro": "^2.3.2",

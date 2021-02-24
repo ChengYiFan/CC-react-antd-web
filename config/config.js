@@ -1,6 +1,5 @@
 import path from 'path';
 import routerMap from './router';
-import pxtorem from 'postcss-pxtorem';
 
 const primaryColor = '#1BB8A8';
 const isDevelopment = process.env.NODE_ENV === 'development';
